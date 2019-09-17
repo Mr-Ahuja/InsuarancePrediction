@@ -3,10 +3,11 @@ import os , numpy as np , pandas as pd
 #from sklearn.tree import DecisionTreeRegressor
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+from InsuarancePrediction import settings
 
 def get_predictions(raw_data):
 
-    path = "{}\\PredictionPresenter".format(os.getcwd())
+    path = "{}\\PredictionPresenter".format(settings.BASE_DIR)
     loaded_model = pickle.load(open(path+"\\finalized_model.pickle", 'rb'))
     dataframe = pickle.load(open(path+"\\dataset.dataframe" , 'rb'))
 
