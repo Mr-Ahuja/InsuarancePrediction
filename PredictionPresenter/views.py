@@ -24,6 +24,7 @@ def predict(request):
     
     return HttpResponse("Success")
 
+@xframe_options_exempt
 def load_prediction(request):
     path = "{}\\PredictionPresenter".format(os.getcwd())
     prediction = pickle.load(open(path+"\\prediction.value", 'rb'))
