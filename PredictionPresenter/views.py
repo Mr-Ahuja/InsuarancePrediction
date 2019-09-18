@@ -7,7 +7,6 @@ import pickle , os
 from django.conf import settings
 # Create your views here.
 
-path = 'http://127.0.0.1:8000/static/'
 
 @xframe_options_exempt
 def predict(request):
@@ -26,8 +25,9 @@ def predict(request):
 
 @xframe_options_exempt
 def load_prediction(request):
-    print(settings.BASE_DIR)
-    prediction = pickle.load(open("PredictionPresenter\\prediction.value", 'rb'))
+
+    path = settings.BASE_DIR
+    prediction = pickle.load(open(path + "\\PredictionPresenter\\prediction.value", 'rb'))
 
     template = loader.get_template('index.html')
     
