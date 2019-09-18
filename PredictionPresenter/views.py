@@ -26,7 +26,7 @@ def predict(request):
 
 @xframe_options_exempt
 def load_prediction(request):
-    print(path)
+    print(settings.BASE_DIR)
     prediction = pickle.load(open("PredictionPresenter\\prediction.value", 'rb'))
 
     template = loader.get_template('index.html')
