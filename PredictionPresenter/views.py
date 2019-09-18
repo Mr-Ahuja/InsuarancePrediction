@@ -4,9 +4,10 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 from django.template import loader  
 from . import predictor
 import pickle , os
-from InsuarancePrediction import settings
+from django.conf import settings
 # Create your views here.
 
+path = 'http://127.0.0.1:8000/static/'
 
 @xframe_options_exempt
 def predict(request):
@@ -19,15 +20,14 @@ def predict(request):
     }
 
     prediction = predictor.get_predictions(mapped_data)
-    path = "{}\\PredictionPresenter".format(settings.BASE_DIR)
-    pickle.dump(prediction, open(path+"//prediction.value", 'wb'))
+    pickle.dump(prediction, open("PredictionPresenter\\prediction.value", 'wb'))
     
     return HttpResponse("Success")
 
 @xframe_options_exempt
 def load_prediction(request):
-    path = "{}\\PredictionPresenter".format(settings.BASE_DIR)
-    prediction = pickle.load(open(path+"//prediction.value", 'rb'))
+    print(path)
+    prediction = pickle.load(open("PredictionPresenter\\prediction.value", 'rb'))
 
     template = loader.get_template('index.html')
     
